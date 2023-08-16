@@ -52,3 +52,6 @@ This is a course scheduler and sharing tool to streamline the process of course 
   * course_id: INTEGER, Foreign Key linking to course_id in the Courses table (refers to the course that was added/affected, if applicable)
   * timestamp: TIMESTAMP, Default to current date and time
 
+## Entity-Relationship Diagram
+![Diagram](https://github.com/akhargha/trincoll_scheduler/assets/118499953/b4a30bdd-d9c6-4057-a62f-5c069d6883ef)
+
