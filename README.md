@@ -19,3 +19,36 @@ This course scheduler is a course scheduler and sharing tool to streamline the p
 * <ins>UserCourses:</ins> Courses that users have in their schedule.
 * <ins>Friends:</ins> Represents friend relationship between users.
 * <ins>Course AuditTrial:</ins> Represents an audit trial for courses added by friends.
+
+## Database Schema
+* <ins>Users:</ins>
+* * user_id: INTEGER, Primary Key, Auto Increment
+  * username: STRING, Unique
+  * email: STRING, Unique
+  * password: STRING (Hashed and salted)
+  * first_name: STRING
+  * last_name: STRING
+* <ins>Courses:</ins>
+* * course_id: INTEGER, Primary Key, Auto Increment
+  * course_code: STRING, Unique
+  * course_name: STRING
+  * course_time_start: TIME
+  * course_time_end: TIME
+  * course_days: STRING (e.g., "MWF" for Monday-Wednesday-Friday)
+* <ins>UserCourses:</ins>
+* * user_course_id: INTEGER, Primary Key, Auto Increment
+  * user_id: INTEGER, Foreign Key referencing Users
+  * course_id: INTEGER, Foreign Key referencing Courses
+* <ins>Friends:</ins>
+* * friend_id: INTEGER, Primary Key, Auto Increment
+  * user_id1: INTEGER, Foreign Key linking to user_id in the Users table
+  * user_id2: INTEGER, Foreign Key linking to user_id in the Users table
+  * permission_to_add_course: BOOLEAN, Default to false
+* <ins>Course AuditTrial:</ins>
+* * audit_id: INTEGER, Primary Key, Auto Increment
+  * user_id: INTEGER, Foreign Key linking to user_id in the Users table (refers to the user whose data was changed)
+  * friend_id: INTEGER, Foreign Key linking to user_id in the Users table (refers to the friend who made the change)
+  * action: STRING (e.g., "Added Course") with a default value of "Added Course"
+  * course_id: INTEGER, Foreign Key linking to course_id in the Courses table (refers to the course that was added/affected, if applicable)
+  * timestamp: TIMESTAMP, Default to current date and time
+
