@@ -2,10 +2,10 @@
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     first_name VARCHAR(255),
-    last_name VARCHAR(255),
+    last_name VARCHAR(255)
 );
 
 -- Courses Table
@@ -47,6 +47,7 @@ CREATE TABLE AuditTrail (
     user_id INT,
     friend_id INT,
     course_id INT,
+    action VARCHAR(255) NOT NULL,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (friend_id) REFERENCES Users(user_id),
