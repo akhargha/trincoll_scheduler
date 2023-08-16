@@ -17,3 +17,15 @@ CREATE TABLE Courses (
     end_time TIME NOT NULL,
     days_of_week VARCHAR(255) NOT NULL
 );
+
+-- Friends Table
+CREATE TABLE Friends (
+    user_id INT,
+    friend_id INT,
+    status ENUM('Pending', 'Accepted') NOT NULL DEFAULT 'Pending',
+    date_sent DATETIME DEFAULT CURRENT_TIMESTAMP,
+    date_accepted DATETIME,
+    PRIMARY KEY(user_id, friend_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (friend_id) REFERENCES Users(user_id)
+);
