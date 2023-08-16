@@ -2,7 +2,7 @@
 Project by Anupam Khargharia.
 
 ## Overview
-This course scheduler is a course scheduler and sharing tool to streamline the process of course scheduling and planning events/meetings with friends. This scheduler adds visualizations to your schedule and acts as a platform to share your schedule with your friends so that they are aware of your time commitments when making plans (and vice-versa!)
+This is a course scheduler and sharing tool to streamline the process of course scheduling and planning events/meetings with friends. This scheduler adds visualizations to your schedule and acts as a platform to share your schedule with your friends so that they are aware of your time commitments when making plans (and vice-versa!)
 
 ## Key Features
 1. (TBD)<ins>Course Input:</ins> Input your course code and the app will auto-fetch all the course details. No need to manually enter course details like times and names now!
