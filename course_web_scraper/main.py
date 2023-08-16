@@ -1,5 +1,5 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
 
 url = "https://internet3.trincoll.edu/ptools/courselisting.aspx"
 
