@@ -18,6 +18,17 @@ CREATE TABLE Courses (
     days_of_week VARCHAR(255) NOT NULL
 );
 
+-- UserCourses Table
+CREATE TABLE UserCourses (
+    user_id INT,
+    course_id INT,
+    added_by_friend_id INT,
+    date_added DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (course_id) REFERENCES Courses(course_id),
+    FOREIGN KEY (added_by_friend_id) REFERENCES Users(user_id)
+);
+
 -- Friends Table
 CREATE TABLE Friends (
     user_id INT,
