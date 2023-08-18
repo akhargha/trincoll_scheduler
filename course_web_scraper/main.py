@@ -1,16 +1,12 @@
 import time
-
+import os
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from tabulate import tabulate
 
+
 url = "https://internet3.trincoll.edu/ptools/courselisting.aspx"
-
-
-def wait_a_bit(wait_for: int = 5) -> None:
-    time.sleep(wait_for)
-
 
 with requests.session() as session:
     course_selection = (
@@ -50,12 +46,15 @@ with requests.session() as session:
             .select_one('table[class="TITLE_tbl"]')
         )
 
-        table_rows = zip(
-            courses.select(".TITLE_id"),
-            courses.select(".TITLE_times"),
-            courses.select(".TITLE_title"),
-            courses.find_all('td', nowrap="true"),
-        )
+        if courses:
+            table_rows = zip(
+                courses.select(".TITLE_id"),
+                courses.select(".TITLE_times"),
+                courses.select(".TITLE_title"),
+                courses.find_all('td', nowrap="true"),
+            )
+        else:
+            table_rows = []
 
         my_table = [
             [
@@ -66,8 +65,9 @@ with requests.session() as session:
             ] for id_, time, title, c_id in table_rows
         ]
 
+        folder_name = "/Users/anupamkhargharia/Desktop/Computer Science/trincoll_scheduler/course_web_scraper/data"
+        file_name = f"{course_id}_{course_name}.csv"
+        path = os.path.join(folder_name, file_name)
         df = pd.DataFrame(my_table, columns=["ID", "Time", "Title", "Course ID"])
-        df.to_csv(f"{course_id}_{course_name}.csv", index=False)
+        df.to_csv(path, index=False)
         print(tabulate(df, headers="keys", tablefmt="psql", showindex=False))
-
-        wait_a_bit(wait_for=3)
